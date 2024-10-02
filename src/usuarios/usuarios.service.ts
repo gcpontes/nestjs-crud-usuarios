@@ -28,11 +28,11 @@ export class UsuariosService {
     return usuario;
   }
 
-  delete(id: number): void {
+  delete(id: number) {
     const index = this.usuarios.findIndex((u) => u.id === id);
     if (index === -1) {
-      throw new NotFoundException('Usuario not found' + index);
+      throw new NotFoundException('Usuario not found');
     }
-    this.usuarios.splice(index, 1);
+    return this.usuarios.splice(index, 1);
   }
 }

@@ -1,16 +1,14 @@
 import { validate } from 'class-validator';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { CreateUsuarioDto } from '../dto/create-usuario.dto';
 
-describe('UpdateUsuarioDto', () => {
-  let dto: UpdateUsuarioDto;
+describe('CreateUsuarioDto', () => {
+  let dto: CreateUsuarioDto;
 
   beforeEach(() => {
-    dto = new UpdateUsuarioDto();
-  });
-
-  it('should pass if email is not provided', async () => {
-    const errors = await validate(dto);
-    expect(errors.length).toBe(0);
+    dto = new CreateUsuarioDto();
+    dto.id = 1;
+    dto.nome = 'João 1';
+    dto.email = 'valid@example.com';
   });
 
   it('should fail if email is not valid', async () => {
@@ -22,11 +20,6 @@ describe('UpdateUsuarioDto', () => {
 
   it('should pass if email is valid', async () => {
     dto.email = 'valid@example.com';
-    const errors = await validate(dto);
-    expect(errors.length).toBe(0);
-  });
-
-  it('should pass if nome is not provided', async () => {
     const errors = await validate(dto);
     expect(errors.length).toBe(0);
   });
@@ -43,6 +36,4 @@ describe('UpdateUsuarioDto', () => {
     const errors = await validate(dto);
     expect(errors.length).toBe(0);
   });
-
-  // Adicione mais testes conforme necessário para outros campos
 });
